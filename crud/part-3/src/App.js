@@ -40,24 +40,24 @@ import { Switch, Route } from 'react-router'
         super()
         this.state = {
           posts: [
-                  {
-                    "id": 1501798834150,
-                    "title": "Item one",
-                    "image": "http://via.placeholder.com/450x250",
-                    "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
-                  },
-                  {
-                    "id": 1501798834151,
-                    "title": "Item two",
-                    "image": "http://via.placeholder.com/450x250",
-                    "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
-                  },
-                  {
-                    "id": 1501798834152,
-                    "title": "Item three",
-                    "image": "http://via.placeholder.com/450x250",
-                    "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
-                  }
+                  // {
+                  //   "id": 1501798834150,
+                  //   "title": "Item one",
+                  //   "image": "http://via.placeholder.com/450x250",
+                  //   "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
+                  // },
+                  // {
+                  //   "id": 1501798834151,
+                  //   "title": "Item two",
+                  //   "image": "http://via.placeholder.com/450x250",
+                  //   "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
+                  // },
+                  // {
+                  //   "id": 1501798834152,
+                  //   "title": "Item three",
+                  //   "image": "http://via.placeholder.com/450x250",
+                  //   "text": "quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
+                  // }
               ]
         }
             this.handleDelete = this.handleDelete.bind(this)
@@ -82,6 +82,16 @@ import { Switch, Route } from 'react-router'
         this.setState({
           //posts: updatedPost
           posts: this.state.posts.filter(post => post.id ===id)
+        })
+      }
+
+       componentDidMount() {
+        fetch('http://localhost:3001/api/posts').then(res=>res.json())
+        .then(data=>{
+          //console.log(data);
+          this.setState({
+            posts: data
+          })
         })
       }
 
